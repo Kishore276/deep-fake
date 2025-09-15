@@ -1,0 +1,7 @@
+torch
+timm
+opencv-python
+numpy
+flask
+pillow
+transformers
