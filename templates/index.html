@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Deepfake Detector</h2>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="file">Upload File</div>
+            <div class="tab" data-tab="text">Text Recognition</div>
+        </div>
+
+        <!-- File Upload Section -->
+        <div class="tab-pane active" id="fileTab">
+            <div class="upload-area" id="dropArea">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">Drag & Drop your file here</div>
+                <div class="upload-hint">Support formats: JPG, PNG, MP4, MOV</div>
+            </div>
+            
+            <div class="selected-file" id="selectedFile">
+                <span>📄</span>
+                <div class="file-name" id="fileName"></div>
+                <div class="remove-file" onclick="removeFile()">✕</div>
+            </div>
+            
+            <input type="file" id="fileInput" accept="image/*,video/*">
+            <button id="fileDetectBtn" onclick="uploadFile()">Analyze for Deepfakes</button>
+        </div>
+
+        <!-- Text Recognition Section -->
+        <div class="tab-pane" id="textTab">
+            <textarea id="textInput" placeholder="Enter text to analyze for AI generation..."></textarea>
+            <button onclick="detectText()">Analyze Text</button>
+            
+            <div class="text-result" id="textResult">
+                <h3 id="textResultTitle">Text Analysis Result</h3>
+                <div id="textResultContent"></div>
+                
+                <div class="text-score">
+                    <div class="text-score-label">Human-Written</div>
+                    <div class="text-score-bar">
+                        <div class="text-score-fill" id="textScoreFill"></div>
+                    </div>
+                    <div class="text-score-value" id="textScoreValue">0%</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="loader"></div>
+            <span>Processing media...</span>
+        </div>
+        
+        <div class="result" id="result"></div>
+        
+        <!-- Frame Visualization Container -->
+        <div class="frames-container" id="framesContainer"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
